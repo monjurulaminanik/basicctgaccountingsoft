@@ -1,0 +1,8 @@
+node_modules
+.next
+.next-*
+.runtime
+.vercel
+*.log
+party-accounts-source.zip
+tsconfig.tsbuildinfo
