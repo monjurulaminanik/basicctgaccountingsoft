@@ -1,0 +1,7 @@
+node_modules/
+.next/
+.next-*/
+.runtime/
+.env.local
+*.log
+party-accounts-source.zip
