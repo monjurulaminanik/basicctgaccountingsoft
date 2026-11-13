@@ -48,23 +48,27 @@ export default function LoginPage() {
   return (
     <main className="grid min-h-dvh lg:grid-cols-[1.05fr_1fr]">
       {/* Brand panel */}
-      <section className="relative hidden flex-col justify-between overflow-hidden bg-slate-950 p-10 lg:flex xl:p-14">
+      <section className="relative hidden flex-col justify-between overflow-hidden bg-[linear-gradient(160deg,#4c1d95_0%,#5b21b6_42%,#0e7490_100%)] p-10 lg:flex xl:p-14">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 -top-24 size-96 rounded-full bg-indigo-600/25 blur-3xl"
+          className="pointer-events-none absolute -left-24 -top-24 size-96 rounded-full bg-fuchsia-500/35 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-32 right-0 size-96 rounded-full bg-sky-500/15 blur-3xl"
+          className="pointer-events-none absolute -bottom-32 right-0 size-96 rounded-full bg-cyan-400/30 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-1/4 top-1/3 size-56 rounded-full bg-amber-300/20 blur-3xl"
         />
 
         <div className="relative flex items-center gap-3">
-          <span className="grid size-11 place-items-center rounded-xl bg-gradient-to-br from-indigo-400 to-indigo-700 text-lg font-bold text-white shadow-lg shadow-indigo-900/40">
+          <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-fuchsia-400 via-violet-400 to-cyan-300 text-lg font-bold text-white shadow-lg shadow-fuchsia-900/40 ring-1 ring-white/30">
             P
           </span>
           <div>
             <p className="text-sm font-semibold text-white">Party Accounts</p>
-            <p className="text-[11px] text-slate-400">by Dawat IT &amp; Consultancy</p>
+            <p className="text-[11px] text-violet-100/70">by Dawat IT &amp; Consultancy</p>
           </div>
         </div>
 
@@ -72,33 +76,33 @@ export default function LoginPage() {
           <h1 className="text-[32px] font-semibold leading-snug text-white xl:text-4xl">
             পাওনা ও দেনা — এক জায়গায়, একদম পরিষ্কার।
           </h1>
-          <p className="mt-4 text-[15px] leading-relaxed text-slate-400">
+          <p className="mt-4 text-[15px] leading-relaxed text-violet-100/80">
             সহজ এন্ট্রি, নির্ভুল পার্টি লেজার আর নিরাপদ রিপোর্টিং — প্রতিদিনের হিসাব রাখার জন্য তৈরি।
           </p>
 
           <ul className="mt-10 space-y-4">
             {highlights.map(({ icon: Icon, title, body }) => (
               <li key={title} className="flex gap-3.5">
-                <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5">
-                  <Icon className="size-[17px] text-indigo-300" />
+                <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-xl border border-white/20 bg-white/12 backdrop-blur-sm">
+                  <Icon className="size-[17px] text-cyan-200" />
                 </span>
                 <span>
                   <span className="block text-sm font-medium text-white">{title}</span>
-                  <span className="mt-0.5 block text-[13px] leading-relaxed text-slate-400">{body}</span>
+                  <span className="mt-0.5 block text-[13px] leading-relaxed text-violet-100/70">{body}</span>
                 </span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="relative text-[11px] text-slate-600">© {new Date().getFullYear()} Dawat IT &amp; Consultancy</p>
+        <p className="relative text-[11px] text-violet-100/40">© {new Date().getFullYear()} Dawat IT &amp; Consultancy</p>
       </section>
 
       {/* Form panel */}
       <section className="flex flex-col items-center justify-center px-5 py-10 sm:px-8">
         <div className="w-full max-w-sm">
           <div className="mb-8 flex items-center gap-3 lg:hidden">
-            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-base font-bold text-white shadow-md">
+            <span className="grid size-10 place-items-center rounded-2xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-md shadow-violet-500/30">
               P
             </span>
             <div>

@@ -54,10 +54,10 @@ const labels: Record<string, string> = {
 const inflow = new Set(["RECEIPT", "PURCHASE_RETURN", "PAYMENT_REFUND"]);
 
 const quickLinks = [
-  { href: "/entry?type=SALES_BILL", label: "বিক্রয় বিল", hint: "পাওনা বাড়বে", icon: ShoppingCart, tone: "bg-indigo-50 text-indigo-600" },
-  { href: "/entry?type=RECEIPT", label: "টাকা আদায়", hint: "পাওনা কমবে", icon: BanknoteArrowDown, tone: "bg-emerald-50 text-emerald-600" },
-  { href: "/entry?type=PURCHASE_BILL", label: "ক্রয় বিল", hint: "দেনা বাড়বে", icon: ReceiptText, tone: "bg-amber-50 text-amber-600" },
-  { href: "/entry?type=PAYMENT", label: "সাপ্লায়ার পেমেন্ট", hint: "দেনা কমবে", icon: BanknoteArrowUp, tone: "bg-rose-50 text-rose-600" },
+  { href: "/entry?type=SALES_BILL", label: "বিক্রয় বিল", hint: "পাওনা বাড়বে", icon: ShoppingCart, tone: "bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-md shadow-violet-500/30" },
+  { href: "/entry?type=RECEIPT", label: "টাকা আদায়", hint: "পাওনা কমবে", icon: BanknoteArrowDown, tone: "bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/30" },
+  { href: "/entry?type=PURCHASE_BILL", label: "ক্রয় বিল", hint: "দেনা বাড়বে", icon: ReceiptText, tone: "bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-md shadow-amber-500/30" },
+  { href: "/entry?type=PAYMENT", label: "সাপ্লায়ার পেমেন্ট", hint: "দেনা কমবে", icon: BanknoteArrowUp, tone: "bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-500/30" },
 ];
 
 export default function DashboardPage() {
@@ -238,9 +238,9 @@ export default function DashboardPage() {
               <Link
                 key={href}
                 href={href}
-                className="group flex items-center gap-3 rounded-xl border border-transparent px-2 py-2.5 transition-colors hover:border-border hover:bg-muted/60"
+                className="group flex items-center gap-3 rounded-xl border border-transparent px-2 py-2.5 transition-colors hover:border-violet-200/70 hover:bg-violet-50/60"
               >
-                <span className={`grid size-9 shrink-0 place-items-center rounded-lg ${tone}`}>
+                <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${tone}`}>
                   <Icon className="size-[17px]" />
                 </span>
                 <span className="min-w-0 flex-1">

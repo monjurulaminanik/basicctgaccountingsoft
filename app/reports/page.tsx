@@ -109,7 +109,7 @@ export default function ReportsPage() {
     >
       {company && (
         <div className="mb-4 flex items-center gap-3 rounded-xl border border-border/70 bg-card px-4 py-3">
-          <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-indigo-50 text-indigo-600">
+          <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-md shadow-violet-500/30">
             <Building2 className="size-[17px]" />
           </span>
           <div className="min-w-0">
@@ -135,7 +135,7 @@ export default function ReportsPage() {
         ].map(({ title, body, icon: Icon }) => (
           <Card key={title} className="p-4">
             <div className="flex items-start gap-3">
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-indigo-50 text-indigo-600">
+              <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-md shadow-violet-500/30">
                 <Icon className="size-[17px]" />
               </span>
               <div className="min-w-0">

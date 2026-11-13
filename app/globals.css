@@ -37,35 +37,58 @@
   --font-sans: "Nirmala UI", "Noto Sans Bengali", "Hind Siliguri", ui-sans-serif,
     system-ui, "Segoe UI", Roboto, Arial, sans-serif;
 
-  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.04), 0 18px 40px -20px rgba(15, 23, 42, 0.25);
+  --shadow-soft: 0 1px 2px rgba(76, 29, 149, 0.05), 0 10px 30px -16px rgba(76, 29, 149, 0.28);
+  --shadow-lift: 0 2px 4px rgba(76, 29, 149, 0.06), 0 22px 46px -24px rgba(76, 29, 149, 0.45);
+}
+
+/* Brand gradient helpers */
+@utility bg-brand {
+  background-image: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+}
+
+@utility bg-brand-soft {
+  background-image: linear-gradient(135deg, rgba(var(--glow-violet) / 0.12), rgba(var(--glow-cyan) / 0.1));
+}
+
+@utility text-brand {
+  background-image: linear-gradient(120deg, var(--brand-from), var(--brand-to), #0891b2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: #f4f6fb;
-  --foreground: #0f172a;
+  --radius: 0.85rem;
+  --background: #f6f4ff;
+  --foreground: #191233;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #191233;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #4f46e5;
+  --popover-foreground: #191233;
+  --primary: #7c3aed;
   --primary-foreground: #ffffff;
-  --secondary: #eef2ff;
-  --secondary-foreground: #3730a3;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #eef2ff;
-  --accent-foreground: #312e81;
-  --destructive: #dc2626;
+  --secondary: #f1ebff;
+  --secondary-foreground: #5b21b6;
+  --muted: #f4f1fc;
+  --muted-foreground: #6b6590;
+  --accent: #ecfeff;
+  --accent-foreground: #0e7490;
+  --destructive: #e11d48;
   --destructive-foreground: #ffffff;
-  --success: #059669;
+  --success: #0d9488;
   --success-foreground: #ffffff;
-  --warning: #d97706;
+  --warning: #ea9a0b;
   --warning-foreground: #ffffff;
-  --border: #e4e9f2;
-  --input: #dbe2ee;
-  --ring: #6366f1;
+  --border: #e9e2fb;
+  --input: #ded5f5;
+  --ring: #a78bfa;
+
+  /* Brand gradients used across the shell, buttons and documents. */
+  --brand-from: #7c3aed;
+  --brand-to: #4f46e5;
+  --glow-violet: 124 58 237;
+  --glow-cyan: 6 182 212;
+  --glow-rose: 244 63 94;
 }
 
 @layer base {
@@ -79,6 +102,11 @@
 
   body {
     background-color: var(--background);
+    background-image:
+      radial-gradient(55rem 38rem at 4% -10%, rgba(var(--glow-violet) / 0.13), transparent 62%),
+      radial-gradient(45rem 32rem at 100% -4%, rgba(var(--glow-cyan) / 0.12), transparent 58%),
+      radial-gradient(40rem 30rem at 60% 108%, rgba(var(--glow-rose) / 0.07), transparent 62%);
+    background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -92,8 +120,8 @@
   }
 
   ::selection {
-    background: #c7d2fe;
-    color: #1e1b4b;
+    background: #ddd6fe;
+    color: #3b0764;
   }
 }
 
@@ -146,5 +174,12 @@
 
   .ledger-cards {
     display: none !important;
+  }
+
+  /* Keep the dark table header and brand accents visible in the saved PDF. */
+  .print-doc,
+  .print-doc * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }

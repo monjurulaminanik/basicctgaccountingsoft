@@ -471,7 +471,7 @@ function EntryForm() {
                   </p>
                 )}
 
-                <div className="rounded-lg bg-indigo-50/70 px-3 py-2.5 text-[12px] leading-relaxed text-indigo-900">
+                <div className="rounded-xl bg-gradient-to-r from-violet-50 to-cyan-50/60 px-3 py-2.5 text-[12px] leading-relaxed text-violet-900 ring-1 ring-violet-100">
                   <span className="flex items-start gap-2">
                     <Info className="mt-0.5 size-3.5 shrink-0" />
                     {isAdjustment

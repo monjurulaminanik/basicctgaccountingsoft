@@ -34,7 +34,8 @@ export default async function PrintReportsPage() {
       <div className="mx-auto w-full max-w-[900px] px-3 print:max-w-none print:px-0">
         <PrintToolbar title="Party Balance Summary" />
 
-        <article className="mx-auto w-full max-w-[820px] bg-white p-6 text-[13px] text-slate-900 shadow-sm ring-1 ring-slate-200 sm:p-9 print:max-w-none print:p-0 print:shadow-none print:ring-0">
+        <article className="print-doc mx-auto w-full max-w-[820px] overflow-hidden bg-white p-6 text-[13px] text-slate-900 shadow-sm ring-1 ring-slate-200 sm:p-9 print:max-w-none print:p-0 print:shadow-none print:ring-0">
+          <div className="mb-5 h-1.5 w-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-400 print:mb-4 print:h-1" />
           <header className="flex flex-col gap-4 border-b-2 border-slate-900 pb-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{company.companyName}</h1>

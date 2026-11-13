@@ -27,12 +27,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const nav = [
-  { href: "/dashboard", label: "ড্যাশবোর্ড", icon: LayoutDashboard },
-  { href: "/entry", label: "নতুন এন্ট্রি", icon: PlusCircle },
-  { href: "/parties", label: "পার্টি", icon: Users },
-  { href: "/ledger", label: "লেজার", icon: BookOpenText },
-  { href: "/reports", label: "রিপোর্ট", icon: BarChart3 },
-  { href: "/settings", label: "সেটিংস", icon: Settings },
+  { href: "/dashboard", label: "ড্যাশবোর্ড", icon: LayoutDashboard, tint: "from-fuchsia-400 to-violet-400" },
+  { href: "/entry", label: "নতুন এন্ট্রি", icon: PlusCircle, tint: "from-cyan-400 to-sky-400" },
+  { href: "/parties", label: "পার্টি", icon: Users, tint: "from-amber-300 to-orange-400" },
+  { href: "/ledger", label: "লেজার", icon: BookOpenText, tint: "from-emerald-400 to-teal-400" },
+  { href: "/reports", label: "রিপোর্ট", icon: BarChart3, tint: "from-violet-400 to-indigo-400" },
+  { href: "/settings", label: "সেটিংস", icon: Settings, tint: "from-rose-400 to-pink-400" },
 ];
 
 const mobileNav = nav.slice(0, 4);
@@ -43,30 +43,43 @@ const roleLabel: Record<string, string> = {
   VIEWER: "Viewer",
 };
 
+function SidebarBackdrop() {
+  return (
+    <>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-16 -top-24 size-64 rounded-full bg-fuchsia-500/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 top-1/3 size-56 rounded-full bg-cyan-400/20 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 left-0 size-64 rounded-full bg-indigo-500/25 blur-3xl"
+      />
+    </>
+  );
+}
+
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <div className={cn("flex items-center gap-3", compact && "gap-2.5")}>
-      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-indigo-400 to-indigo-700 text-base font-bold text-white shadow-lg shadow-indigo-900/30">
+      <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-lg shadow-fuchsia-900/40 ring-1 ring-white/20">
         P
       </span>
       <span className="min-w-0">
         <span className="block truncate text-sm font-semibold text-white">Party Accounts</span>
-        <span className="block truncate text-[11px] text-slate-400">Payable &amp; Receivable</span>
+        <span className="block truncate text-[11px] text-violet-200/60">Payable &amp; Receivable</span>
       </span>
     </div>
   );
 }
 
-function NavLinks({
-  pathname,
-  onNavigate,
-}: {
-  pathname: string;
-  onNavigate?: () => void;
-}) {
+function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
   return (
     <nav className="flex flex-col gap-1" aria-label="প্রধান মেনু">
-      {nav.map(({ href, label, icon: Icon }) => {
+      {nav.map(({ href, label, icon: Icon, tint }) => {
         const active = pathname === href;
         return (
           <Link
@@ -75,25 +88,30 @@ function NavLinks({
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+              "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
               active
-                ? "bg-white/10 text-white"
-                : "text-slate-400 hover:bg-white/5 hover:text-slate-100"
+                ? "bg-white/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.12)] ring-1 ring-white/10"
+                : "text-violet-200/70 hover:bg-white/6 hover:text-white"
             )}
           >
             <span
               className={cn(
-                "absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-indigo-400 transition-opacity",
+                "absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b transition-opacity",
+                tint,
                 active ? "opacity-100" : "opacity-0"
               )}
               aria-hidden
             />
-            <Icon
+            <span
               className={cn(
-                "size-[18px] shrink-0 transition-colors",
-                active ? "text-indigo-300" : "text-slate-500 group-hover:text-slate-300"
+                "grid size-7 shrink-0 place-items-center rounded-lg transition-all",
+                active
+                  ? cn("bg-gradient-to-br text-white shadow-md", tint)
+                  : "bg-white/5 text-violet-200/70 group-hover:bg-white/10 group-hover:text-white"
               )}
-            />
+            >
+              <Icon className="size-[15px]" />
+            </span>
             <span className="truncate">{label}</span>
           </Link>
         );
@@ -112,20 +130,20 @@ function AccountCard({
   onSignOut: () => void;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2.5">
-      <span className="grid size-9 shrink-0 place-items-center rounded-full bg-indigo-500/90 text-sm font-semibold text-white">
+    <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/8 p-2.5 backdrop-blur-sm">
+      <span className="grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-indigo-500 text-sm font-semibold text-white shadow-inner">
         {name.slice(0, 1).toUpperCase()}
       </span>
       <span className="min-w-0 flex-1">
         <span className="block truncate text-[13px] font-semibold text-white">{name}</span>
-        <span className="block truncate text-[11px] text-slate-400">{roleLabel[role] || role}</span>
+        <span className="block truncate text-[11px] text-violet-200/60">{roleLabel[role] || role}</span>
       </span>
       <button
         type="button"
         onClick={onSignOut}
         aria-label="সাইন আউট"
         title="সাইন আউট"
-        className="grid size-8 shrink-0 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+        className="grid size-8 shrink-0 place-items-center rounded-lg text-violet-200/60 transition-colors hover:bg-white/10 hover:text-white"
       >
         <LogOut className="size-4" />
       </button>
@@ -171,36 +189,43 @@ export function AppShell({
   }
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-dvh">
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col bg-slate-950 px-3 pb-6 pt-5 lg:flex print:hidden">
-        <div className="px-2 pb-6">
-          <Brand />
-        </div>
-        <NavLinks pathname={pathname} />
-        <div className="mt-auto space-y-3 px-1 pt-6">
-          <AccountCard name={name} role={role} onSignOut={logout} />
-          <p className="px-1 text-[10px] text-slate-600">Dawat IT &amp; Consultancy</p>
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col overflow-hidden bg-[linear-gradient(180deg,#251455_0%,#2a1765_38%,#150c34_100%)] px-3 pb-6 pt-5 lg:flex print:hidden">
+        <SidebarBackdrop />
+        <div className="relative z-10 flex flex-1 flex-col">
+          <div className="px-2 pb-6">
+            <Brand />
+          </div>
+          <NavLinks pathname={pathname} />
+          <div className="mt-auto space-y-3 px-1 pt-6">
+            <AccountCard name={name} role={role} onSignOut={logout} />
+            <p className="px-1 text-[10px] text-violet-200/30">Dawat IT &amp; Consultancy</p>
+          </div>
         </div>
       </aside>
 
       {/* Mobile drawer */}
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent className="px-3 pb-6 pt-5">
+        <SheetContent className="overflow-hidden bg-[linear-gradient(180deg,#251455_0%,#2a1765_38%,#150c34_100%)] px-3 pb-6 pt-5">
           <SheetTitle className="sr-only">মেনু</SheetTitle>
-          <div className="px-2 pb-6">
-            <Brand />
-          </div>
-          <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
-          <div className="mt-auto space-y-3 px-1 pt-6">
-            <AccountCard name={name} role={role} onSignOut={logout} />
-            <p className="px-1 text-[10px] text-slate-600">Dawat IT &amp; Consultancy</p>
+          <SidebarBackdrop />
+          <div className="relative z-10 flex flex-1 flex-col">
+            <div className="px-2 pb-6">
+              <Brand />
+            </div>
+            <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
+            <div className="mt-auto space-y-3 px-1 pt-6">
+              <AccountCard name={name} role={role} onSignOut={logout} />
+              <p className="px-1 text-[10px] text-violet-200/30">Dawat IT &amp; Consultancy</p>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
 
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-30 border-b border-border/70 bg-background/85 backdrop-blur-md print:hidden">
+        <header className="sticky top-0 z-30 border-b border-border/60 bg-white/70 backdrop-blur-xl print:hidden">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-violet-400/50 via-cyan-400/40 to-transparent" />
           <div className="mx-auto flex min-h-16 w-full max-w-6xl items-center gap-3 px-4 py-2.5 sm:px-6 lg:min-h-[68px] lg:px-8">
             <Button
               variant="outline"
@@ -213,8 +238,10 @@ export function AppShell({
             </Button>
 
             <div className="min-w-0 flex-1">
-              <p className="hidden text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80 sm:block">
-                {company}
+              <p className="hidden text-[11px] font-semibold uppercase tracking-[0.14em] sm:block">
+                <span className="bg-gradient-to-r from-violet-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
+                  {company}
+                </span>
               </p>
               <h1 className="truncate text-lg font-semibold tracking-tight sm:text-xl lg:text-2xl">
                 {title}
@@ -227,7 +254,7 @@ export function AppShell({
                 <DropdownMenuTrigger asChild>
                   <button
                     type="button"
-                    className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 text-sm font-semibold text-white shadow-sm ring-offset-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+                    className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-indigo-500 text-sm font-semibold text-white shadow-md shadow-violet-500/30 ring-2 ring-white/70 transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet-300/60"
                     aria-label="অ্যাকাউন্ট মেনু"
                   >
                     {name.slice(0, 1).toUpperCase()}
@@ -243,8 +270,8 @@ export function AppShell({
                     </span>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onSelect={logout} className="text-destructive">
-                    <LogOut className="!text-destructive" />
+                  <DropdownMenuItem onSelect={logout} className="text-rose-600">
+                    <LogOut className="!text-rose-600" />
                     সাইন আউট
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -265,11 +292,11 @@ export function AppShell({
 
       {/* Mobile bottom navigation */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-card/95 backdrop-blur-md lg:hidden print:hidden"
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-border/70 bg-white/85 backdrop-blur-xl lg:hidden print:hidden"
         aria-label="দ্রুত নেভিগেশন"
       >
         <div className="pb-safe mx-auto grid max-w-md grid-cols-5 px-2 pt-1.5">
-          {mobileNav.map(({ href, label, icon: Icon }) => {
+          {mobileNav.map(({ href, label, icon: Icon, tint }) => {
             const active = pathname === href;
             return (
               <Link
@@ -277,11 +304,20 @@ export function AppShell({
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-lg text-[10px] font-medium transition-colors",
-                  active ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  "flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl text-[10px] font-medium transition-colors",
+                  active ? "text-violet-700" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Icon className={cn("size-[19px]", active && "stroke-[2.4]")} />
+                <span
+                  className={cn(
+                    "grid size-8 place-items-center rounded-xl transition-all",
+                    active
+                      ? cn("bg-gradient-to-br text-white shadow-md", tint)
+                      : "bg-transparent"
+                  )}
+                >
+                  <Icon className="size-[18px]" />
+                </span>
                 <span className="w-full truncate px-0.5 text-center">{label}</span>
               </Link>
             );
@@ -289,9 +325,11 @@ export function AppShell({
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-lg text-[10px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl text-[10px] font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            <Menu className="size-[19px]" />
+            <span className="grid size-8 place-items-center rounded-xl">
+              <Menu className="size-[18px]" />
+            </span>
             <span>আরও</span>
           </button>
         </div>

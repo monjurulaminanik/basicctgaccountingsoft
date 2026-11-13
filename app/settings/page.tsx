@@ -89,7 +89,7 @@ export default function SettingsPage() {
         <Card>
           <CardHeader className="pb-4">
             <div className="flex items-center gap-3">
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-indigo-50 text-indigo-600">
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-md shadow-violet-500/30">
                 <Building2 className="size-5" />
               </span>
               <div className="min-w-0">
@@ -196,9 +196,9 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-indigo-50 to-white">
+          <Card className="bg-gradient-to-br from-violet-50 via-fuchsia-50/70 to-cyan-50/70">
             <CardContent className="flex items-start gap-3">
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-indigo-600 text-white">
+              <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-violet-600 text-white shadow-md shadow-fuchsia-500/30">
                 <Wallet className="size-[17px]" />
               </span>
               <div>
